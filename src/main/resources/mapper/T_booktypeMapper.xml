@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nirui.springboot.mapper.T_booktypeMapper">
+
+  <resultMap id="BaseResultMap" type="com.nirui.springboot.entity.T_booktype">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="bookTypeName" jdbcType="VARCHAR" property="booktypename" />
+    <result column="bookTypeDesc" jdbcType="VARCHAR" property="booktypedesc" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, bookTypeName, bookTypeDesc
+  </sql>
+
+  <select id="getAll"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_booktype
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_booktype
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_booktype
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.nirui.springboot.entity.T_booktype">
+    insert into t_booktype (id, bookTypeName, bookTypeDesc
+      )
+    values (#{id,jdbcType=VARCHAR}, #{booktypename,jdbcType=VARCHAR}, #{booktypedesc,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.nirui.springboot.entity.T_booktype">
+    insert into t_booktype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="booktypename != null">
+        bookTypeName,
+      </if>
+      <if test="booktypedesc != null">
+        bookTypeDesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="booktypename != null">
+        #{booktypename,jdbcType=VARCHAR},
+      </if>
+      <if test="booktypedesc != null">
+        #{booktypedesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.nirui.springboot.entity.T_booktype">
+    update t_booktype
+    <set>
+      <if test="booktypename != null">
+        bookTypeName = #{booktypename,jdbcType=VARCHAR},
+      </if>
+      <if test="booktypedesc != null">
+        bookTypeDesc = #{booktypedesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.nirui.springboot.entity.T_booktype">
+    update t_booktype
+    set bookTypeName = #{booktypename,jdbcType=VARCHAR},
+      bookTypeDesc = #{booktypedesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
