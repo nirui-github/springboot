@@ -73,43 +73,4 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <!--mybatis自动生成代码插件-->
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.6</version>
-                <configuration>
-                    <configurationFile>GeneratorMapper.xml</configurationFile>
-                    <verbose>true</verbose>
-                    <!-- 是否覆盖，true表示会替换生成的JAVA文件，false则不覆盖 -->
-                    <overwrite>true</overwrite>
-                </configuration>
-            </plugin>
-        </plugins>
-        <!--把src/main/java下所有的xml文件放在target文件，其他文件会自动加载在target下-->
-        <resources>
-            <resource>
-                <directory>/src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>/src/main/resources</directory>
-                <includes>
-                    <include>**/*.*</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>/src/main/webapp</directory>
-                <targetPath>META-INF/resources</targetPath>
-                <includes>
-                    <include>**/*.*</include>
-                </includes>
-            </resource>
-        </resources>
-    </build>
 </project>
